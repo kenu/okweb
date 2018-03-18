@@ -15,11 +15,11 @@
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `userid` varchar(50) NOT NULL,
+  `userid` varchar(50) NOT NULL UNIQUE,
   `passwd` varchar(50) NOT NULL,
   `nickname` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- 테이블 데이터 devdb.user:~1 rows (대략적) 내보내기
 DELETE FROM `user`;
