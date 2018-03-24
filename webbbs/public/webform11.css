@@ -1,0 +1,148 @@
+#wrap {
+    width: 800px;
+    margin: auto;
+    padding: 10px;
+}
+h2 {
+    color: blue;
+    font-size: 2.0em;
+    margin-bottom: 0;
+    clear: both;
+    padding-left: 10px;
+    border-bottom: 1px dashed #888;
+}
+.message,
+.list {
+    background-color: #f0f0f0;
+    padding: 20px 20px 20px 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+.message {
+    height: 550px;
+}
+.message input {
+    width: 43%;
+    margin: 10px;
+}
+.message textarea {
+    width: 90%;
+    height: 350px;
+}
+.message input,
+.message textarea {
+    box-sizing: border-box;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    font-size: 1.5em;
+}
+.message button {
+    margin: 20px;
+    padding: 10px;
+    border-radius: 10px;
+    border: 2px solid #888;
+    font-size: 1.5em;
+    color: #333;
+}
+#vname,
+#vmessage,
+.list dt,
+.list dd {
+    border: 1px solid #888;
+    border-radius: 10px;
+    text-align: left;
+    padding: 4px;
+}
+.list dt {
+    padding-left: 10px;
+    background-color: rgba(138, 245, 245, 0.7);
+}
+.list dd {
+    margin-top: -1px;
+}
+.message {
+    padding-top: 12px !important;
+}
+.message #vname {
+    background-color: rgba(138, 245, 245, 0.7);
+}
+#vmessage,
+dd {
+    height: 60px;
+    margin-bottom: 6px;
+}
+div#pagination a {
+    display: inline-block;
+    background-color: skyblue;
+    margin: 2px;
+    padding: 1px 5px;
+}
+div#pagination span.current {
+    padding: 2px 5px 2px 5px;
+    border: 1px solid navy;
+    font-weight: bold;
+    background-color: #2e6ab1;
+    color: #FFF;
+}
+#vname,
+#vmessage {
+    margin-bottom: 6px;
+    border-radius: 5px;
+    margin-left: 15px;
+    background-color: #fefefe;
+}
+@media screen and (max-width: 480px) {
+    h2 {
+        background-color: #f00;
+    }
+    .message {
+        width: 100%;
+        padding: 0;
+    }
+    div {
+        padding: 0;
+    }
+    .message input {
+        width: 100%;
+        margin: 2px;
+    }
+    .message textarea {
+        width: 100%;
+        height: 300px;
+    }
+    .message,
+    .list {
+        background-color: #f0f0f0;
+        width: 100%;
+        padding: 0;
+        border-radius: 3px;
+        text-align: center;
+    }
+    #vname,
+    #vmessage,
+    .list dt,
+    .list dd {
+        width: 100%;
+        border: 1px solid #888;
+        border-radius: 3px;
+        text-align: left;
+        padding: 4px;
+        box-sizing: border-box;
+    }
+    #vname,
+    #vmessage,
+    .list dd {
+        margin: 4px 0;
+    }
+}
+@media screen and (min-width: 640px) {
+    h2 {
+        background-color: #ff0;
+    }
+    .message,
+    .list {
+        height: 100% !important;
+        padding: 0;
+    }
+}
