@@ -5,6 +5,13 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var multer = require('multer');
+var mysql = require('mysql');
+var connection = mysql.createConnection({
+  host: 'localhost',
+  user: 'javauser',
+  password: 'javadude',
+  database: 'javatest'
+});
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -31,13 +38,13 @@ app.use('/member', member);
 app.use(multer({
   dest: './public/uploads/',
   rename: function (fieldname, filename) {
-      return Date.now();
+    return Date.now();
   },
   onFileUploadStart: function (file) {
-      console.log(file.originalname + ' is starting ...')
+    console.log(file.originalname + ' is starting ...')
   },
   onFileUploadComplete: function (file) {
-      console.log(file.fieldname + ' uploaded to  ' + file.path)
+    console.log(file.fieldname + ' uploaded to  ' + file.path)
   }
 }).any());
 
@@ -51,19 +58,33 @@ app.post('/link', function (req, res) {
 })
 
 app.post('/api/photo', function (req, res) {
-  console.log(req.files);
+  var file = req.files[0];
+  var filename = file.filename;
+  var original = file.originalname;
+  var size = file.size;
+  connection.connect();
+
+  connection.query(`INSERT INTO photo (seq, filename, original, size, reg_date)
+  VALUES (null, ?, ?, ?, now());`,
+    [filename, original, size]
+    , function (error, results, fields) {
+      if (error) throw error;
+      console.log('The solution is: ', results[0]);
+    });
+
+  connection.end();
   res.end(JSON.stringify(req.files));
 });
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
@@ -72,5 +93,8 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+
+
 
 module.exports = app;
